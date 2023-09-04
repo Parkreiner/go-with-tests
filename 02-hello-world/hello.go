@@ -11,7 +11,7 @@ var greetings = map[string][2]string{
 	"fr": {"Bonjour, ", "!"},
 }
 
-func getGreetingInfo(locale string) (string, string) {
+func getGreetingInfo(locale string) (prefix string, suffix string) {
 	greetingInfo, ok := greetings[locale]
 	if !ok {
 		greetingInfo = greetings[defaultLocaleKey]
