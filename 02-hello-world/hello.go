@@ -2,8 +2,18 @@ package main
 
 import "fmt"
 
+const helloPrefix = "Hello, "
+const helloSuffix = "!"
+
 func Hello(name string) string {
-	return "Hello, " + name + "!"
+	var target string
+	if name == "" {
+		target = "world"
+	} else {
+		target = name
+	}
+
+	return helloPrefix + target + helloSuffix
 }
 
 func main() {
