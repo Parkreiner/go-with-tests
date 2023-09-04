@@ -27,4 +27,10 @@ func TestHello(t *testing.T) {
 		expected := "Hola, Don Quixote!"
 		assertCorrectMessage(t, result, expected)
 	})
+
+	t.Run("Defaults to English if unknown locale is used", func(t *testing.T) {
+		result := Hello("Blobfish", "zh")
+		expected := "Hello, Blobfish!"
+		assertCorrectMessage(t, result, expected)
+	})
 }
