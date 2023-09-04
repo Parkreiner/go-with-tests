@@ -2,22 +2,30 @@ package main
 
 import "fmt"
 
+const defaultLocaleKey = "en"
+const defaultRecipient = "world"
+
 var greetings = map[string][2]string{
 	"en": {"Hello, ", "!"},
 	"es": {"Hola, ", "!"},
+	"fr": {"Bonjour, ", "!"},
+}
+
+func getGreetingInfo(locale string) (string, string) {
+	greetingInfo, ok := greetings[locale]
+	if !ok {
+		greetingInfo = greetings[defaultLocaleKey]
+	}
+
+	return greetingInfo[0], greetingInfo[1]
 }
 
 func Hello(name string, locale string) string {
-	greetingInfo, ok := greetings[locale]
-	if !ok {
-		greetingInfo = greetings["en"]
-	}
-
-	prefix, suffix := greetingInfo[0], greetingInfo[1]
+	prefix, suffix := getGreetingInfo(locale)
 
 	target := name
 	if target == "" {
-		target = "world"
+		target = defaultRecipient
 	}
 
 	return prefix + target + suffix
