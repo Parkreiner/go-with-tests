@@ -2,21 +2,28 @@ package main
 
 import "fmt"
 
-const helloPrefix = "Hello, "
-const helloSuffix = "!"
+var greetings = map[string][2]string{
+	"en": {"Hello, ", "!"},
+	"es": {"Hola, ", "!"},
+}
 
-func Hello(name string) string {
-	var target string
-	if name == "" {
-		target = "world"
-	} else {
-		target = name
+func Hello(name string, locale string) string {
+	greetingInfo, ok := greetings[locale]
+	if !ok {
+		greetingInfo = greetings["en"]
 	}
 
-	return helloPrefix + target + helloSuffix
+	prefix, suffix := greetingInfo[0], greetingInfo[1]
+
+	target := name
+	if target == "" {
+		target = "world"
+	}
+
+	return prefix + target + suffix
 }
 
 func main() {
-	msg := Hello("World")
+	msg := Hello("World", "en")
 	fmt.Println(msg)
 }

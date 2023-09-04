@@ -11,14 +11,20 @@ func assertCorrectMessage(t testing.TB, received, expected string) {
 
 func TestHello(t *testing.T) {
 	t.Run("Says hello to people", func(t *testing.T) {
-		result := Hello("Bob Bobson")
+		result := Hello("Bob Bobson", "en")
 		expected := "Hello, Bob Bobson!"
 		assertCorrectMessage(t, result, expected)
 	})
 
 	t.Run("Says 'Hello, world!' when an empty string is provided", func(t *testing.T) {
-		result := Hello("")
+		result := Hello("", "en")
 		expected := "Hello, world!"
+		assertCorrectMessage(t, result, expected)
+	})
+
+	t.Run("Greets the user in Spanish if locale is Spanish", func(t *testing.T) {
+		result := Hello("Don Quixote", "es")
+		expected := "Hola, Don Quixote!"
 		assertCorrectMessage(t, result, expected)
 	})
 }
