@@ -2,8 +2,10 @@ package main
 
 import "fmt"
 
-const defaultLocaleKey = "en"
-const defaultRecipient = "world"
+const (
+	defaultLocaleKey = "en"
+	defaultRecipient = "world"
+)
 
 var greetings = map[string][2]string{
 	"en": {"Hello, ", "!"},
